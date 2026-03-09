@@ -13,7 +13,7 @@
     <main class="page">
       <form id="home-form" class="card">
         <section>
-          <h1> Schedule Maker</h1>
+          <h1>Schedule Maker</h1>
           <h2 class="section-title">
             <span class="required">*</span> Course Information
           </h2>
@@ -23,12 +23,16 @@
               id="course-name"
               name="course_name"
               placeholder="Course Name"
+              autocomplete="organization-title"
+              maxlength="80"
             />
             <input
               type="text"
               id="course-number"
               name="course_number"
               placeholder="Course Number"
+              autocomplete="off"
+              maxlength="30"
             />
           </div>
         </section>
@@ -69,10 +73,17 @@
                   name="time_start"
                   type="time"
                   step="300"
+                  required
                 />
 
                 <label for="time-end">End Time</label>
-                <input id="time-end" name="time_end" type="time" step="300" />
+                <input
+                  id="time-end"
+                  name="time_end"
+                  type="time"
+                  step="300"
+                  required
+                />
               </div>
             </div>
           </div>
@@ -84,12 +95,16 @@
               id="professor-name"
               name="professor_name"
               placeholder="Professor's Name"
+              autocomplete="name"
+              maxlength="80"
             />
             <input
               type="text"
               id="building-name"
               name="building_name"
               placeholder="Building Name"
+              autocomplete="street-address"
+              maxlength="80"
             />
             <select id="setup" name="setup">
               <option value="" selected>Setup</option>
@@ -110,20 +125,22 @@
           <h2>Recently Added</h2>
           <button id="clear-items" type="button">Clear Items</button>
         </div>
-        <table class="recent-table">
-          <thead>
-            <tr>
-              <th>Course</th>
-              <th>Course No.</th>
-              <th>Setup</th>
-              <th>Day/s</th>
-              <th>Time Start</th>
-              <th>Time End</th>
-              <th>Professor's Name</th>
-            </tr>
-          </thead>
-          <tbody id="recent-table-body"></tbody>
-        </table>
+        <div class="recent-table-wrap" role="region" aria-label="Recently added courses">
+          <table class="recent-table">
+            <thead>
+              <tr>
+                <th scope="col">Course</th>
+                <th scope="col">Course No.</th>
+                <th scope="col">Setup</th>
+                <th scope="col">Day/s</th>
+                <th scope="col">Time Start</th>
+                <th scope="col">Time End</th>
+                <th scope="col">Professor's Name</th>
+              </tr>
+            </thead>
+            <tbody id="recent-table-body"></tbody>
+          </table>
+        </div>
       </section>
 
       <div class="action-button">
@@ -210,13 +227,13 @@
           .map(function (entry) {
             return `
               <tr>
-                <td>${entry.course_name || "-"}</td>
-                <td>${entry.class_number || "-"}</td>
-                <td>${entry.setup || "-"}</td>
-                <td>${entry.days || "-"}</td>
-                <td>${entry.time_start || "-"}</td>
-                <td>${entry.time_end || "-"}</td>
-                <td>${entry.professor_name || "-"}</td>
+                <td data-label="Course">${entry.course_name || "-"}</td>
+                <td data-label="Course No.">${entry.class_number || "-"}</td>
+                <td data-label="Setup">${entry.setup || "-"}</td>
+                <td data-label="Day/s">${entry.days || "-"}</td>
+                <td data-label="Time Start">${entry.time_start || "-"}</td>
+                <td data-label="Time End">${entry.time_end || "-"}</td>
+                <td data-label="Professor's Name">${entry.professor_name || "-"}</td>
               </tr>
             `;
           })

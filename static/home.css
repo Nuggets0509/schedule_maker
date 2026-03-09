@@ -255,6 +255,11 @@ select:focus {
   table-layout: auto;
 }
 
+.recent-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .recent-table th,
 .recent-table td {
   border: 1px solid #d6d6d6;
@@ -338,8 +343,7 @@ select:focus {
     min-width: 760px;
   }
 
-  .recent-box {
-    overflow-x: auto;
+  .recent-table-wrap {
     -webkit-overflow-scrolling: touch;
   }
 }
