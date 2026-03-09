@@ -41,13 +41,12 @@ body {
 }
 
 .page {
-  width: min(1140px, 100%);
+  width: min(1440px, 100%);
   margin: 0 auto;
-  margin-top: 10px;
   padding: 100px 12px 20px;
+  min-height: 100vh;
   position: relative;
   background: #ffffff;
-  border-radius: 15px;
 }
 
 /* Lines for Horizontal Lines Dividing the whole page
@@ -61,7 +60,7 @@ body::before {
   background: #000000;   /* line color 
   z-index: 0;
 } 
-
+*/
 
 .card,
 .recent-box {
@@ -78,14 +77,15 @@ body::before {
   margin-top: 44px;
 }
 
-.card + .recent-box::before { 
+.card + .recent-box::before {
   content: "";
   position: absolute;
   left: -14px;
   top: -22px;
-  width: calc(100% + 28px); left: -25px;
+  width: calc(100% + 28px);
+  left: -25px;
   border-top: 3px solid #6e6d6d;
-} */
+}
 
 .section-title {
   margin: 0 0 10px;
