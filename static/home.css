@@ -46,7 +46,6 @@ body {
   padding: 100px 12px 20px;
   min-height: 100vh;
   position: relative;
-  background: #f5f5f5;
 }
 
 /* Lines for Horizontal Lines Dividing the whole page
@@ -77,7 +76,7 @@ body::before {
   margin-top: 44px;
 }
 
-.card + .recent-box::before {
+/*.card + .recent-box::before {
   content: "";
   position: absolute;
   left: -14px;
@@ -85,7 +84,7 @@ body::before {
   width: calc(100% + 28px);
   left: -25px;
   border-top: 3px solid #6e6d6d;
-}
+}*/
 
 .section-title {
   margin: 0 0 10px;
