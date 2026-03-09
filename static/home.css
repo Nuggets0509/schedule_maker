@@ -28,7 +28,7 @@ body {
   z-index: 1000;
 }
 
-.action-button button {
+.action-button a {
   background: transparent;
   border: none;
   padding: 0;
