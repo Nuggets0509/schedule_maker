@@ -34,6 +34,17 @@ body {
   padding: 0;
   cursor: pointer;
   display: block;
+  text-decoration: none;
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.action-button a:focus,
+.action-button a:focus-visible,
+.action-button a:active {
+  outline: none;
+  box-shadow: none;
 }
 
 .action-button .icon {
@@ -41,6 +52,9 @@ body {
   background: transparent;
   width: clamp(42px, 5vw, 56px);
   height: auto;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
 }
 
 .page {
