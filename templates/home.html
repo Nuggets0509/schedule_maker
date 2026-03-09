@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schedule Maker</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='home.css') }}"
+    />
+  </head>
+  <body>
+    <main class="page">
+      <form id="home-form" class="card">
+        <section>
+          <h1> Schedule Maker</h1>
+          <h2 class="section-title">
+            <span class="required">*</span> Course Information
+          </h2>
+          <div class="course-grid">
+            <input
+              type="text"
+              id="course-name"
+              name="course_name"
+              placeholder="Course Name"
+            />
+            <input
+              type="text"
+              id="course-number"
+              name="course_number"
+              placeholder="Course Number"
+            />
+          </div>
+        </section>
+
+        <section class="details-grid">
+          <div>
+            <h2 class="section-title">
+              <span class="required">*</span> Schedule
+            </h2>
+            <div class="schedule-layout">
+              <div class="days-list">
+                <label
+                  ><input type="checkbox" name="days" value="Monday" />
+                  Monday</label
+                >
+                <label
+                  ><input type="checkbox" name="days" value="Tuesday" />
+                  Tuesday</label
+                >
+                <label
+                  ><input type="checkbox" name="days" value="Wednesday" />
+                  Wednesday</label
+                >
+                <label
+                  ><input type="checkbox" name="days" value="Thursday" />
+                  Thursday</label
+                >
+                <label
+                  ><input type="checkbox" name="days" value="Friday" />
+                  Friday</label
+                >
+              </div>
+
+              <div class="time-selects">
+                <label for="time-start">Start Time</label>
+                <input
+                  id="time-start"
+                  name="time_start"
+                  type="time"
+                  step="300"
+                />
+
+                <label for="time-end">End Time</label>
+                <input id="time-end" name="time_end" type="time" step="300" />
+              </div>
+            </div>
+          </div>
+
+          <div class="additional-info">
+            <h2 class="section-title">Additional Information</h2>
+            <input
+              type="text"
+              id="professor-name"
+              name="professor_name"
+              placeholder="Professor's Name"
+            />
+            <input
+              type="text"
+              id="building-name"
+              name="building_name"
+              placeholder="Building Name"
+            />
+            <select id="setup" name="setup">
+              <option value="" selected>Setup</option>
+              <option value="Hybrid">Hybrid</option>
+              <option value="Face to Face">Face to Face</option>
+            </select>
+          </div>
+        </section>
+
+        <div class="actions">
+          <button id="submit" type="submit">Add Course</button>
+          <button id="clear-form" type="button">Clear</button>
+        </div>
+      </form>
+
+      <section class="recent-box">
+        <div class="recent-header">
+          <h2>Recently Added</h2>
+          <button id="clear-items" type="button">Clear Items</button>
+        </div>
+        <table class="recent-table">
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Course No.</th>
+              <th>Setup</th>
+              <th>Day/s</th>
+              <th>Time Start</th>
+              <th>Time End</th>
+              <th>Professor's Name</th>
+            </tr>
+          </thead>
+          <tbody id="recent-table-body"></tbody>
+        </table>
+      </section>
+
+      <div class="action-button">
+        <button type="button">
+          <a href="{{ url_for('___' )}}">///CHANGE THIS TO EDIT SCHEDULE PAGE URL
+          <img
+            src="{{ url_for('elements', filename='PAGE_2.svg') }}"
+            class="icon"/> 
+        </button>
+        <button type="button">
+          <a href="{{ url_for('___' )}}">///CHANGE THIS TO VIEW SCHEDULE PAGE URL
+          <img
+            src="{{ url_for('elements', filename='PAGE_3.svg') }}"
+            class="icon"
+          />
+        </button>
+        </a>
+      </div>
+    </main>
+
+    <script>
+      const form = document.getElementById("home-form");
+      const clearFormButton = document.getElementById("clear-form");
+      const clearItemsButton = document.getElementById("clear-items");
+      const recentTableBody = document.getElementById("recent-table-body");
+
+      function formatTime(value) {
+        if (!value || !value.includes(":")) {
+          return value || "";
+        }
+
+        const parts = value.split(":");
+        if (parts.length < 2) {
+          return value;
+        }
+
+        const hours24 = Number(parts[0]);
+        const minutes = Number(parts[1]);
+        if (Number.isNaN(hours24) || Number.isNaN(minutes)) {
+          return value;
+        }
+
+        const period = hours24 >= 12 ? "PM" : "AM";
+        const hours12 = hours24 % 12 || 12;
+        return `${String(hours12).padStart(2, "0")}:${String(minutes).padStart(2, "0")} ${period}`;
+      }
+
+      function getFormData() {
+        const selectedDays = Array.from(
+          document.querySelectorAll('input[name="days"]:checked'),
+        ).map(function (checkbox) {
+          return checkbox.value;
+        });
+
+        return {
+          course_name: document.getElementById("course-name").value.trim(),
+          class_number: document.getElementById("course-number").value.trim(),
+          days: selectedDays.join(", "),
+          time_start: formatTime(document.getElementById("time-start").value),
+          time_end: formatTime(document.getElementById("time-end").value),
+          professor_name: document
+            .getElementById("professor-name")
+            .value.trim(),
+          building_name: document.getElementById("building-name").value.trim(),
+          setup: document.getElementById("setup").value,
+        };
+      }
+
+      function saveFormData() {
+        const formData = getFormData();
+        localStorage.setItem("homeFormData", JSON.stringify(formData));
+        return formData;
+      }
+
+      function getRecentEntries() {
+        return JSON.parse(localStorage.getItem("recentEntries") || "[]");
+      }
+
+      function saveRecentEntries(entries) {
+        localStorage.setItem("recentEntries", JSON.stringify(entries));
+      }
+
+      function renderRecentTable() {
+        const entries = getRecentEntries();
+        recentTableBody.innerHTML = entries
+          .map(function (entry) {
+            return `
+              <tr>
+                <td>${entry.course_name || "-"}</td>
+                <td>${entry.class_number || "-"}</td>
+                <td>${entry.setup || "-"}</td>
+                <td>${entry.days || "-"}</td>
+                <td>${entry.time_start || "-"}</td>
+                <td>${entry.time_end || "-"}</td>
+                <td>${entry.professor_name || "-"}</td>
+              </tr>
+            `;
+          })
+          .join("");
+      }
+
+      function addRecentEntry(entry) {
+        const hasAnyValue = Object.values(entry).some(function (value) {
+          return String(value || "").trim() !== "";
+        });
+
+        if (!hasAnyValue) {
+          return;
+        }
+
+        const entries = getRecentEntries();
+        entries.unshift(entry);
+        saveRecentEntries(entries.slice(0, 8));
+        renderRecentTable();
+      }
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const formData = saveFormData();
+        addRecentEntry(formData);
+        form.reset();
+      });
+
+      clearFormButton.addEventListener("click", function () {
+        form.reset();
+        localStorage.removeItem("homeFormData");
+      });
+
+      clearItemsButton.addEventListener("click", function () {
+        localStorage.removeItem("recentEntries");
+        renderRecentTable();
+      });
+
+      renderRecentTable();
+    </script>
+  </body>
+</html>

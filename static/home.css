@@ -1,0 +1,279 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body {
+  /* Whole page background */
+  margin: 0;
+  min-height: 100vh;
+  background: #f2f2f2;
+}
+
+.page h1 {
+  font-size: 40px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.action-button {
+  position: fixed;
+  left: 150px;
+  top: 25%;
+  transform: translateY(50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.action-button button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+}
+
+.action-button .icon {
+  display: block;
+  background: transparent;
+}
+
+.page {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding: 100px 12px 20px;
+  min-height: 100vh;
+  position: relative;
+  background: #f2f2f2;
+
+}
+
+/* Lines for Horizontal Lines Dividing the whole page
+body::before {
+  content: "";
+  position: fixed;
+  left: 25vh;        /* move line horizontally
+  top: 0;
+  width: 3px;         /* line thickness 
+  height: 100vh;
+  background: #000000;   /* line color 
+  z-index: 0;
+} 
+
+
+.card,
+.recent-box {
+  background: #f8f9fa;
+  border: 1px solid #b7bec4;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 40px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.card + .recent-box {
+  position: relative;
+  margin-top: 44px;
+}
+
+.card + .recent-box::before { 
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: -22px;
+  width: calc(100% + 28px); left: -25px;
+  border-top: 3px solid #6e6d6d;
+} */
+
+
+
+.section-title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.required {
+  color: #c52828;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.details-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+
+input,
+select {
+  width: 100%;
+  height: 34px;
+  border: 1px solid #bdbdbd;
+  border-radius: 8px;
+  background: #f4f4f4;
+  padding: 0 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #56b973;
+  box-shadow: 0 0 0 2px rgba(62, 171, 97, 0.2);
+}
+
+.schedule-layout {
+  display: grid;
+  grid-template-columns: max-content minmax(320px, 520px);
+  gap: 12px;
+  align-items: start;
+}
+
+.days-list {
+  display: grid;
+  gap: 8px;
+}
+
+.days-list label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.days-list input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+}
+
+.time-selects {
+  display: grid;
+  gap: 6px;
+  width: min(520px, 100%);
+  justify-self: start;
+}
+
+.time-selects input[type="time"] {
+  width: 360px;
+  max-width: 100%;
+}
+
+.time-selects label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.additional-info {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+}
+
+#submit {
+  min-width: 120px;
+  height: 36px;
+  border: none;
+  border-radius: 9px;
+  background: #36aa57;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#submit:hover {
+  background: #2f9a4d;
+}
+
+#clear-form {
+  min-width: 96px;
+  height: 36px;
+  border: 1px solid #b9b9b9;
+  border-radius: 9px;
+  background: #f7f7f7;
+  color: #333;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#clear-form:hover {
+  background: #ebebeb;
+}
+
+.recent-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.recent-header h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
+#clear-items {
+  border: none;
+  border-radius: 8px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#clear-items:hover {
+  background: #dc3c3c;
+}
+
+.recent-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.recent-table th,
+.recent-table td {
+  border: 1px solid #d6d6d6;
+  padding: 10px 8px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.recent-table th {
+  background: #d6ebf3;
+}
+
+@media (max-width: 768px) {
+  .course-grid,
+  .details-grid,
+  .schedule-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .recent-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
