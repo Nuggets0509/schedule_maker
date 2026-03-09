@@ -3,7 +3,6 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
 body {
   /* Whole page background */
   margin: 0;
@@ -42,13 +41,13 @@ body {
 }
 
 .page {
-  width: min(1440px, 100%);
+  width: min(1140px, 100%);
   margin: 0 auto;
+  margin-top: 10px;
   padding: 100px 12px 20px;
-  min-height: 100vh;
   position: relative;
-  background: #f2f2f2;
-
+  background: #ffffff;
+  border-radius: 15px;
 }
 
 /* Lines for Horizontal Lines Dividing the whole page
@@ -87,8 +86,6 @@ body::before {
   width: calc(100% + 28px); left: -25px;
   border-top: 3px solid #6e6d6d;
 } */
-
-
 
 .section-title {
   margin: 0 0 10px;
