@@ -12,7 +12,7 @@ body {
 }
 
 .page h1 {
-  font-size: 40px;
+  font-size: clamp(30px, 4vw, 40px);
   margin-top: 10px;
   text-align: center;
 }
@@ -39,12 +39,14 @@ body {
 .action-button .icon {
   display: block;
   background: transparent;
+  width: clamp(42px, 5vw, 56px);
+  height: auto;
 }
 
 .page {
   width: min(1440px, 100%);
   margin: 0 auto;
-  padding: 100px 12px 20px;
+  padding: 84px 16px 24px;
   min-height: 100vh;
   position: relative;
   background: #f2f2f2;
@@ -250,6 +252,7 @@ select:focus {
   width: 100%;
   border-collapse: collapse;
   background: #fff;
+  table-layout: auto;
 }
 
 .recent-table th,
@@ -264,16 +267,102 @@ select:focus {
   background: #d6ebf3;
 }
 
+@media (max-width: 1366px) {
+  .action-button {
+    left: 24px;
+    top: 18%;
+    transform: translateY(0);
+  }
+
+  .page {
+    width: min(1120px, 100%);
+    padding-left: 88px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .page {
+    padding: 76px 16px 20px;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .schedule-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .time-selects input[type="time"] {
+    width: 100%;
+  }
+
+  .action-button {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+}
+
 @media (max-width: 768px) {
+  .page {
+    padding: 62px 12px 16px;
+  }
+
   .course-grid,
-  .details-grid,
   .schedule-layout {
     grid-template-columns: 1fr;
   }
 
+  .actions {
+    flex-wrap: wrap;
+  }
+
+  #submit,
+  #clear-form {
+    flex: 1 1 170px;
+  }
+
+  .recent-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
   .recent-table {
-    display: block;
+    display: table;
+    min-width: 760px;
+  }
+
+  .recent-box {
     overflow-x: auto;
-    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 480px) {
+  .card,
+  .recent-box {
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .page h1 {
+    margin-top: 4px;
+  }
+
+  .days-list label,
+  .time-selects label {
+    font-size: 14px;
+  }
+
+  .recent-table th,
+  .recent-table td {
+    font-size: 12px;
+    padding: 8px 6px;
   }
 }
