@@ -17,15 +17,6 @@ APP_STATE = {
 def home():
     return render_template('home.html')
 
-
-@app.route('/second')
-def second():
-    try:
-        return render_template('mainform.html')
-    except TemplateNotFound:
-        return jsonify({'error': 'mainform.html not found'}), 404
-
-
 @app.route('/elements/<path:filename>')
 def elements(filename):
     elements_dir = Path(app.root_path) / 'elements'
