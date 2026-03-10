@@ -17,7 +17,7 @@ body {
 }
 
 .action-button {
-  position: fixed;
+  position: relative;
   left: 150px;
   top: 25%;
   transform: translateY(50%);
